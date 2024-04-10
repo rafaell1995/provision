@@ -164,19 +164,19 @@ fi
 test "$distro_id" = "ubuntu" || test "$distro_id" = "debian" || bail "Distro '$distro_id' isn't supported."
 
 # Check for required software.
-dependencies="apt-get apt-key curl iptables sysctl service hostnamectl"
+dependencies="apt-get curl iptables sysctl service hostnamectl"
 for dep in $dependencies; do
-	if ! type "$dep" >/dev/null 2>&1; then
-		bail "$dep could not be found, which is a hard dependency along with: $dependencies."
-	fi
+    if ! type "$dep" >/dev/null 2>&1; then 
+        bail "$dep could not be found, which is a hard dependency along with: $dependencies."
+    fi
 done
 
 # Require privilege, i.e. sudo, after administrative tools block.
 test "$(id -u)" -eq 0 || bail "This script must be run as root."	
 
 # Add Docker repository to the source list.
-curl -fsSL "https://download.docker.com/linux/$distro_id/gpg" | apt-key add -
-echo "deb [arch=amd64] https://download.docker.com/linux/$distro_id $distro_name stable" >> /etc/apt/sources.list.d/docker.list
+curl -fsSL "https://download.docker.com/linux/$distro_id/gpg" | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/$distro_id $distro_name stable" > /etc/apt/sources.list.d/docker.list
 
 # Refresh repositories and upgrade installed packages.
 apt-get update
