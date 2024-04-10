@@ -34,7 +34,7 @@ Some options are available via command flags. See --help.
 ## Usage example
 
 ```
-$ ./provision.sh -u arthur -n gero.corenzan.com -k https://gist.githubusercontent.com/haggen/e9f9ef40da12f209ee630be5d7ba3805/raw/06adcfb30c6b434adafbc698b78d9d1a083144c2/id_rsa.pub 
+$ ./provision.sh -u arthur -n gero.corenzan.com -k https://gist.githubusercontent.com/haggen/e9f9ef40da12f209ee630be5d7ba3805/raw/06adcfb30c6b434adafbc698b78d9d1a083144c2/id_rsa.pub -m <HOSTNAME_SERVER>
 ```
 
 ## References
