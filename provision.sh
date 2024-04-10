@@ -280,12 +280,17 @@ fi
 # Only dump iptables configuration after installing all the software.
 iptables-save > /etc/iptables.conf
 
+# Verifica e cria o diretório /etc/network/if-up.d/ se ele não existir
+if [ ! -d /etc/network/if-up.d ]; then
+    sudo mkdir -p /etc/network/if-up.d
+fi
+
 # Load iptables config when network device is up.
-cat > /etc/network/if-up.d/iptables <<-EOF
-	#!/usr/bin/env bash
-	iptables-restore < /etc/iptables.conf
-EOF
-chmod +x /etc/network/if-up.d/iptables
+sudo bash -c 'cat > /etc/network/if-up.d/iptables <<-EOF
+    #!/usr/bin/env bash
+    iptables-restore < /etc/iptables.conf
+EOF'
+sudo chmod +x /etc/network/if-up.d/iptables
 
 # Write custom Docker configuration.
 # https://docs.docker.com/engine/reference/commandline/dockerd/
