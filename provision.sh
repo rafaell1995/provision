@@ -272,9 +272,9 @@ fi
 
 # Setup Dokku.
 if test -z "${skip_dokku=}"; then
-	DOKKU_TAG=v0.27.0
-	curl -fsSL "https://raw.githubusercontent.com/dokku/dokku/$DOKKU_TAG/bootstrap.sh" | bash
-	dokku domains:set-global "$hostname"
+    DOKKU_TAG=v0.34.4 # Atualize esta linha com a versão mais recente
+    curl -fsSL "https://raw.githubusercontent.com/dokku/dokku/$DOKKU_TAG/bootstrap.sh" | bash
+    dokku domains:set-global "$hostname"
 fi
 
 # Only dump iptables configuration after installing all the software.
