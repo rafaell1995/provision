@@ -35,9 +35,9 @@ Assuming you're root:
 
 ```sh
 cd /tmp
-curl -O provision.sh https://raw.githubusercontent.com/corenzan/provision/master/provision.sh
+curl -O https://raw.githubusercontent.com/rafaell1995/provision/master/provision.sh
 chmod +x provision.sh
-./provision.sh --username arthur --hostname krusty.corenzan.com --public-key https://gist.githubusercontent.com/haggen/e9f9ef40da12f209ee630be5d7ba3805/raw/06adcfb30c6b434adafbc698b78d9d1a083144c2/id_rsa.pub --dokku --digital-ocean
+./provision.sh -u arthur -n krusty.corenzan.com -k https://gist.githubusercontent.com/haggen/e9f9ef40da12f209ee630be5d7ba3805/raw/06adcfb30c6b434adafbc698b78d9d1a083144c2/id_rsa.pub --dokku --digital-ocean
 ```
 
 ## References
