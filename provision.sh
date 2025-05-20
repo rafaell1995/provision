@@ -352,6 +352,17 @@ iptables-save > /etc/iptables.conf
 # Save ip6tables configuration, but only after installing new packages, since they might have modified the rules.
 ip6tables-save > /etc/ip6tables.conf
 
+# Create directories
+ensure_dir() {
+  local dir="$1"
+  if [ ! -d "$dir" ]; then
+    mkdir -p "$dir" || bail "Não foi possível criar o diretório $dir"
+  fi
+}
+
+ensure_dir /etc/network/if-up.d
+ensure_dir /etc/docker
+
 # Load iptables config when network device is up.
 cat > /etc/network/if-up.d/iptables <<-EOF
 	#!/usr/bin/env bash
